@@ -19,7 +19,7 @@ export default function Home() {
       window.localStorage.getItem("supexplain_preferences") ?? "{}"
     );
     if (preferences) {
-      setEnabled(Boolean(preferences.ai));
+      setEnabled(Boolean(preferences.ai ?? true));
     }
 
     const plan = window.localStorage.getItem("plan");
@@ -149,7 +149,7 @@ export default function Home() {
         <textarea
           ref={planRef}
           className="w-full h-full rounded-md focus:outline-green-700 shadow-inner border bg-gray-50/50 font-mono p-4 text-sm"
-          placeholder={`PASTE YOUR QUERY PLAN HERE (example below):\n\n${SAMPLE_QUERY_PLAN}`}
+          placeholder={`PASTE YOUR QUERY PLAN HERE (example below):\n\n${JSON.stringify(SAMPLE_QUERY_PLAN)}`}
         />
         <textarea
           ref={queryRef}
