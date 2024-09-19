@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'SupaFont';
+  src: url('./CustomFont-Book.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+#app,
+pev2,
+.plan-container,
+.tree-lines,
+.plan-diagram {
+  font-family: 'SupaFont', sans-serif !important;
+  background-color: #FFF !important;
+}

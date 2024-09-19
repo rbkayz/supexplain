@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## SupExplain
 
-## Getting Started
+SupExplain is an AI Postgres Explain Visualizer. It uses the PEV library to visualize the query plan of your queries
 
-First, run the development server:
+The tool also uses GPT-4o to analyze your query plan and suggest recommendations
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Use this tool to identify inefficiencies in your queries and improve performance
+
+
+## How to use
+
+1. Open the SQL editor of your supabase project
+2. Append the following statement to the start of the query and run it
+
+```sql
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS, FORMAT JSON)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Copy the output and paste it into the query plan text area
+4. Click the `Analyze Query Plan` button
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+5. If you have enabled AI analysis, the tool will use GPT-4o to analyze the query plan and suggest recommendations. IMP: To enable AI analysis in your local environment, you need to add your `OPENAI_API_KEY` to the `.env` file
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Postgres Explain Visualizer
 
-To learn more about Next.js, take a look at the following resources:
+The tool uses the PEV library to visualize the query plan. You can learn more about the PEV library [here](https://github.com/dalibo/pev2).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Credits
 
-## Deploy on Vercel
+This tool was built for a Supabase Hackathon. This is not affiliated or endorsed by Supabase
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Thank you to the following tools / projects that made this tool possible:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [PEV](https://github.com/dalibo/pev2)
+- [Supabase](https://supabase.com)
+- [Next.js](https://nextjs.org)
+- [TailwindCSS](https://tailwindcss.com)
+- [Vercel](https://vercel.com)
+- [OpenAI](https://openai.com)
+- [GPT-4o](https://platform.openai.com/docs/models/gpt-4o)

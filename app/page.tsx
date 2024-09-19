@@ -1,101 +1,183 @@
-import Image from "next/image";
+"use client";
+import { Switch } from "@headlessui/react";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
+import { Bs1SquareFill, Bs2SquareFill, Bs3SquareFill } from "react-icons/bs";
+import { MdContentCopy } from "react-icons/md";
+import { SAMPLE_QUERY, SAMPLE_QUERY_PLAN } from "./_components/constants";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const planRef = useRef<HTMLTextAreaElement>(null);
+  const queryRef = useRef<HTMLTextAreaElement>(null);
+  const [enabled, setEnabled] = useState(true);
+  const router = useRouter();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  // Load preferences from local storage
+  useEffect(() => {
+    const preferences = JSON.parse(
+      window.localStorage.getItem("supexplain_preferences") ?? "{}"
+    );
+    if (preferences) {
+      setEnabled(Boolean(preferences.ai));
+    }
+
+    const plan = window.localStorage.getItem("plan");
+    const query = window.localStorage.getItem("query");
+
+    if (plan && planRef.current) {
+      planRef.current.value = plan;
+    }
+
+    if (query && queryRef.current) {
+      queryRef.current.value = query;
+    }
+  }, []);
+
+  const handleClick = () => {
+    if (!planRef.current?.value) {
+      toast.error("Please fill in the plan");
+      return;
+    }
+
+    if (!queryRef.current?.value) {
+      toast.error("Please fill in the query");
+      return;
+    }
+
+    window.localStorage.setItem(
+      "supexplain_preferences",
+      JSON.stringify({ ai: enabled })
+    );
+
+    window.localStorage.setItem("plan", planRef.current?.value ?? "");
+
+    window.localStorage.setItem("query", queryRef.current?.value ?? "");
+
+    router.push("/analyze");
+  };
+
+  return (
+    <div className="flex w-full h-full max-w-screen-xl mx-auto p-8 items-center gap-x-8">
+      <div className="flex flex-col gap-y-8 w-full h-full">
+        <div className="flex flex-col gap-y-4">
+          <div className="flex items-center gap-x-3 text-lg font-semibold">
+            <Bs1SquareFill />
+            <span>About SupExplain</span>
+          </div>
+          <div>
+            SupExplain is an AI Postgres Explain Visualizer. It uses the PEV
+            library to visualize the query plan of your queries
+            <br />
+            <br />
+            The tool also uses GPT-4o to analyze your query plan and suggest recommendations
+            <br />
+            <br />
+            Use this tool to identify inefficiencies in your queries and improve
+            performance
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="flex flex-col gap-y-4">
+          <div className="flex items-center gap-x-3 text-lg font-semibold">
+            <Bs2SquareFill />
+            <span>Run your query with EXPLAIN ANALYZE</span>
+          </div>
+          <div className="flex flex-col gap-y-2">
+            Open the SQL editor of your supabase project
+            <br />
+            <br />
+            Append the following statement to the start of the query and run it
+            <div className="font-mono text-green-700 font-semibold flex items-center gap-x-4 px-4 py-2 bg-gray-50 w-fit rounded-md shadow-inner">
+              {`EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS, FORMAT JSON)`}
+              <MdContentCopy
+                className="cursor-pointer"
+                onClick={() => {
+                  toast.promise(
+                    navigator.clipboard.writeText(
+                      `EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS, FORMAT JSON)`
+                    ),
+                    {
+                      loading: "Copying to clipboard",
+                      success: "Copied to clipboard",
+                      error: "Failed to copy to clipboard",
+                    }
+                  );
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-y-4">
+          <div className="flex items-center gap-x-3 text-lg font-semibold">
+            <Bs3SquareFill />
+            <span>Paste the output on the RHS</span>
+          </div>
+          <div className="">
+            Paste the query plan in the top box, and the query in the bottom
+            box. <br />
+            Click on <span className="underline">Analyze Query Plan</span>
+          </div>
+          <div className="italic text-gray-500">
+            This tool does not store your query or send it to any remote
+            servers. All visualizations are rendered locally
+          </div>
+          <div className="flex items-center gap-x-2">
+            <Switch
+              checked={enabled}
+              onChange={(checked) => {
+                setEnabled(checked);
+                window.localStorage.setItem(
+                  "supexplain_preferences",
+                  JSON.stringify({ ai: checked })
+                );
+              }}
+              className={`${
+                enabled ? "bg-green-700" : "bg-gray-200"
+              } relative inline-flex h-6 w-11 items-center rounded-full`}
+            >
+              <span
+                className={`${
+                  enabled ? "translate-x-6" : "translate-x-1"
+                } inline-block h-4 w-4 transform rounded-full bg-white transition`}
+              />
+            </Switch>
+            Analyze query with AI (this will send the plan to OpenAI)
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col items-center gap-y-8 w-full h-full">
+        <textarea
+          ref={planRef}
+          className="w-full h-full rounded-md focus:outline-green-700 shadow-inner border bg-gray-50/50 font-mono p-4 text-sm"
+          placeholder={`PASTE YOUR QUERY PLAN HERE (example below):\n\n${SAMPLE_QUERY_PLAN}`}
+        />
+        <textarea
+          ref={queryRef}
+          className="w-full h-full rounded-md  focus:outline-green-700 shadow-inner border bg-gray-50/50 font-mono p-4 text-sm"
+          placeholder={`PASTE YOUR QUERY HERE (example below):\n\n${SAMPLE_QUERY}`}
+        />
+        <div className="flex gap-x-4 items-center">
+          <button
+            className="bg-green-700 text-white px-8 hover:opacity-90 py-2 rounded-md w-fit"
+            onClick={handleClick}
+          >
+            Analyze Query Plan
+          </button>
+          <button
+            className="bg-gray-200 text-gray-500 px-8 hover:opacity-90 py-2 rounded-md w-fit"
+            onClick={() => {
+              if (!planRef.current || !queryRef.current) {
+                return;
+              }
+              planRef.current.value = JSON.stringify(SAMPLE_QUERY_PLAN);
+              queryRef.current.value = SAMPLE_QUERY;
+              // handleClick();
+            }}
+          >
+            Run Example
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

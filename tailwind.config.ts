@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        supa: ["var(--font-supafont)"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

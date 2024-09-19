@@ -1,0 +1,23 @@
+<!doctype html>
+<html style="height: 100%; width: 100%">
+  <head>
+    <title>Pev2 example usage</title>
+    <meta charset="UTF-8" />
+    <script src="vue.global.prod.js"></script>
+    <script src="pev2.umd.js"></script>
+    <link
+      href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://unpkg.com/pev2@1.12.1/dist/style.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="content.css" />
+  </head>
+
+  <body style="height: 100%; width: 100%">
+    <div id="app" style="height: 100%; width: 100%; font-family: SupaFont !important;" >
+      <pev2 style="height: 100%; width: 100%;" :plan-source="plan" :plan-query="query" />
+    </div>
+
+    <script src="pev-script.js"></script>
+  </body>
+</html>
