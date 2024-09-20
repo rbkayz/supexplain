@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
-import PeriskopeToast from "./_components/toast";
-import { Header } from "./_components/header";
 import { Footer } from "./_components/footer";
+import { Header } from "./_components/header";
+import PeriskopeToast from "./_components/toast";
+import "./globals.css";
 
 const supafont = localFont({
   src: "./_fonts/CustomFont-Book.woff2",
@@ -13,8 +13,8 @@ const supafont = localFont({
 
 const SUPEXPLANER_META_TAGS = {
   title: `SupExplain`,
-  description: `SupExplain is an AI Postgres Explainer that helps you visualize your queries and optimize performance with AI`,
-  og_image: `https://${process.env.VERCEL_BRANCH_URL}/og.png`,
+  description: `SupExplain is an AI Postgres Query PlanExplainer that helps you visualize your queries and optimize performance with AI`,
+  og_image: `https://supexplain.vercel.app/og.png`,
   theme_color: `#15803D`,
 };
 
