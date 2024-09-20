@@ -32,7 +32,6 @@ export const Analysis = () => {
         for await (const content of readStreamableValue(output)) {
           if (isMounted) {
             setOutput((prev) => (prev ?? "") + (content ?? ""));
-            console.log(content);
           }
         }
       });
