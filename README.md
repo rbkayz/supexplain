@@ -6,8 +6,7 @@ The tool also uses GPT-4o to analyze your query plan and suggest recommendations
 
 Use this tool to identify inefficiencies in your queries and improve performance
 
-[[](https://www.veed.io/view/bd7bdfd8-fd74-4a27-aec7-c3a76fbae78e?panel=share)](https://www.veed.io/view/bd7bdfd8-fd74-4a27-aec7-c3a76fbae78e?panel=share)
-
+<video controls src="public/supexplain-intro.mp4" title="SupExplain Intro"></video>
 
 ## How to use
 
