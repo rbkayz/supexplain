@@ -63,7 +63,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex w-full h-full max-w-screen-xl mx-auto p-8 items-center gap-x-8">
+    <div className="flex flex-1 max-w-screen-xl mx-auto p-8 items-center gap-8 flex-col lg:flex-row">
       <div className="flex flex-col gap-y-8 w-full h-full">
         <div className="flex flex-col gap-y-4">
           <div className="flex items-center gap-x-3 text-lg font-semibold">
@@ -153,12 +153,12 @@ export default function Home() {
       <div className="flex flex-col items-center gap-y-8 w-full h-full">
         <textarea
           ref={planRef}
-          className="w-full h-full rounded-md focus:outline-green-700 shadow-inner border bg-gray-50/50 font-mono p-4 text-sm"
+          className="w-full h-full min-h-64 rounded-md focus:outline-green-700 shadow-inner border bg-gray-50/50 font-mono p-4 text-sm"
           placeholder={`PASTE YOUR QUERY PLAN HERE (example below):\n\n${JSON.stringify(SAMPLE_QUERY_PLAN)}`}
         />
         <textarea
           ref={queryRef}
-          className="w-full h-full rounded-md  focus:outline-green-700 shadow-inner border bg-gray-50/50 font-mono p-4 text-sm"
+          className="w-full h-full min-h-64 rounded-md  focus:outline-green-700 shadow-inner border bg-gray-50/50 font-mono p-4 text-sm"
           placeholder={`PASTE YOUR QUERY HERE (example below):\n\n${SAMPLE_QUERY}`}
         />
         <div className="flex flex-col gap-y-2 items-center">

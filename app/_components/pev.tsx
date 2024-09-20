@@ -4,7 +4,7 @@ export const PEV: React.FC<{
   return (
     <iframe
       ref={iframeRef}
-      className="w-2/3 h-full border rounded"
+      className="h-1/2 w-full lg:w-2/3 lg:h-full border rounded"
       src="./pev.html"
     ></iframe>
   );

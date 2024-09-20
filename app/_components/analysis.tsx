@@ -43,7 +43,7 @@ export const Analysis = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full w-1/3 items-start justify-between pl-4 gap-y-4">
+    <div className="flex flex-col h-1/2 lg:h-full w-full lg:w-1/3 items-start justify-between px-4 lg:pl-4 lg:px-0 gap-y-4">
       <div className="flex w-full justify-between gap-x-8">
         <button
           className="flex items-center gap-x-2 text-sm border rounded px-2 py-1 shadow-sm hover:bg-gray-100"
