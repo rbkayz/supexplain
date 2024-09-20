@@ -6,7 +6,7 @@ The tool also uses GPT-4o to analyze your query plan and suggest recommendations
 
 Use this tool to identify inefficiencies in your queries and improve performance
 
-https://github.com/user-attachments/assets/5996a28b-ace9-42ad-826c-ef9d1d587b6c
+https://github.com/user-attachments/assets/9f137bc3-21a2-495e-aeb5-79b709bf636c
 
 
 ## How to use
