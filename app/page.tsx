@@ -12,6 +12,7 @@ export default function Home() {
   const queryRef = useRef<HTMLTextAreaElement>(null);
   const [enabled, setEnabled] = useState(true);
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   // Load preferences from local storage
   useEffect(() => {
@@ -37,6 +38,7 @@ export default function Home() {
   }, []);
 
   const handleClick = () => {
+    setIsLoading(true);
     if (!planRef.current?.value) {
       toast.error("Please fill in the plan");
       return;
@@ -57,6 +59,7 @@ export default function Home() {
     window.localStorage.setItem("query", queryRef.current?.value ?? "");
 
     router.push("/analyze");
+    setIsLoading(false);
   };
 
   return (
@@ -160,8 +163,9 @@ export default function Home() {
         />
         <div className="flex flex-col gap-y-2 items-center">
           <button
-            className="bg-green-700 text-white px-8 hover:opacity-90 py-2 rounded-md w-fit"
+            className="bg-green-700 text-white px-8 hover:opacity-90 py-2 rounded-md w-fit disabled:animate-pulse"
             onClick={handleClick}
+            disabled={isLoading}
           >
             Analyze Query Plan
           </button>
