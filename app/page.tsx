@@ -32,6 +32,8 @@ export default function Home() {
     if (query && queryRef.current) {
       queryRef.current.value = query;
     }
+
+    router.prefetch('/analyze');
   }, []);
 
   const handleClick = () => {
