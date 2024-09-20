@@ -6,7 +6,8 @@ The tool also uses GPT-4o to analyze your query plan and suggest recommendations
 
 Use this tool to identify inefficiencies in your queries and improve performance
 
-<video controls src="public/supexplain-intro.mp4" title="SupExplain Intro"></video>
+https://github.com/user-attachments/assets/5996a28b-ace9-42ad-826c-ef9d1d587b6c
+
 
 ## How to use
 
