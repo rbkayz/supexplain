@@ -156,7 +156,7 @@ export default function Home() {
           className="w-full h-full rounded-md  focus:outline-green-700 shadow-inner border bg-gray-50/50 font-mono p-4 text-sm"
           placeholder={`PASTE YOUR QUERY HERE (example below):\n\n${SAMPLE_QUERY}`}
         />
-        <div className="flex gap-x-4 items-center">
+        <div className="flex flex-col gap-y-2 items-center">
           <button
             className="bg-green-700 text-white px-8 hover:opacity-90 py-2 rounded-md w-fit"
             onClick={handleClick}
@@ -164,14 +164,14 @@ export default function Home() {
             Analyze Query Plan
           </button>
           <button
-            className="bg-gray-200 text-gray-500 px-8 hover:opacity-90 py-2 rounded-md w-fit"
+            className="underline text-gray-500 hover:text-gray-800 text-xs"
             onClick={() => {
               if (!planRef.current || !queryRef.current) {
                 return;
               }
               planRef.current.value = JSON.stringify(SAMPLE_QUERY_PLAN);
               queryRef.current.value = SAMPLE_QUERY;
-              // handleClick();
+              handleClick();
             }}
           >
             Run Example

@@ -1,9 +1,9 @@
-import { useRouter } from "next/navigation";
-import { FaAngleLeft } from "react-icons/fa";
-import { analyzeQuery } from "../_actions/analyzeQuery";
-import { useEffect, useState } from "react";
 import { readStreamableValue } from "ai/rsc";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FaAngleLeft } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
+import { analyzeQuery } from "../_actions/analyzeQuery";
 
 export const Analysis = () => {
   const router = useRouter();
@@ -13,6 +13,11 @@ export const Analysis = () => {
   useEffect(() => {
     const plan = window.localStorage.getItem("plan");
     const query = window.localStorage.getItem("query");
+
+    if (!plan || !query) {
+      router.push("/");
+    }
+
     const preferences = JSON.parse(
       window.localStorage.getItem("supexplain_preferences") ?? "{}"
     );
