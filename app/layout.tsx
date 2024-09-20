@@ -13,7 +13,7 @@ const supafont = localFont({
 
 const SUPEXPLANER_META_TAGS = {
   title: `SupExplain`,
-  description: `SupExplain is an AI Postgres Query PlanExplainer that helps you visualize your queries and optimize performance with AI`,
+  description: `SupExplain is an AI Postgres Query Plan Explainer that helps you visualize your queries and optimize performance with AI`,
   og_image: `https://supexplain.vercel.app/og.png`,
   theme_color: `#15803D`,
 };
