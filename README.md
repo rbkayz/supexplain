@@ -1,6 +1,6 @@
 ## SupExplain
 
-SupExplain is an AI Postgres Query Plan Explainer that helps you visualize your queries and optimize performance with AI. 
+SupExplain is an AI Postgres Query Plan Explainer that helps you visualize your queries and optimize performance with AI. Live deployment [here](https://supexplain.vercel.app)
 
 It uses the PEV library to visualize the query plan of your queries, and GPT-4o to analyze your query plan and suggest recommendations
 
