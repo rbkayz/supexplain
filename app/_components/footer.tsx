@@ -3,7 +3,7 @@ import { IoMdHeart } from "react-icons/io";
 
 export const Footer = () => {
   return (
-    <footer className="flex flex-col items-center justify-center gap-y-2 py-4">
+    <footer className="flex flex-col items-center justify-center gap-y-2 text-center p-4">
       <div className="text-xs">
         This open-source tool{" "}
         <Link
