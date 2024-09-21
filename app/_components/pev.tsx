@@ -1,5 +1,5 @@
 export const PEV: React.FC<{
-  iframeRef: React.RefObject<HTMLIFrameElement>;
+  iframeRef?: React.RefObject<HTMLIFrameElement>;
 }> = ({ iframeRef }) => {
   return (
     <iframe

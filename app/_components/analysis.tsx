@@ -1,3 +1,4 @@
+"use client";
 import { readStreamableValue } from "ai/rsc";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
